@@ -80,9 +80,12 @@ DATABASES = {
         #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'db_player',
-        'USER': 'player',
-        'PASSWORD': 'player',
-        'HOST': '173.18.0.1',
+        # 'USER': 'player',
+        'USER': 'root',
+        # 'PASSWORD': 'player',
+        'PASSWORD': 'root',
+        #'HOST': '173.18.0.1',
+        'HOST': 'localhost',
         'PORT': 3306,
     }
 }
@@ -125,6 +128,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT  = os.path.join(BASE_DIR, "static/")
+# STATIC_ROOT  = os.path.join(BASE_DIR, "static/")
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
 #MEDIA_ROOT = os.path.join(BASE_DIR, 'firstapp/static/')
 LOGOUT_REDIRECT_URL = '/'
