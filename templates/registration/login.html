@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/login.css" />
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/fonts.css" />
+</head>
+<body class='login'>
+    <div id="container">
+          <!-- Header -->
+        <div id="header">
+            <div id="branding">
+            <h1 id="site-name"><a href="/accounts/login/">IPTV administration</a></h1>
+            </div>
+        </div>
+      <!-- END Header -->
+            <!-- Content -->
+      <div id="content" class="colM">
+        <div id="content-main">
+            <form method="POST" id="login-form">
+            {% csrf_token %}
+                <div class='form-row'>
+                    <label class='required' for="id_username">Username</label>
+                    <input autofocus required  id="id_username" type="text" maxlength="254" name="username">
+                </div>
+                  <div class="form-row">    
+                    <label class="required" for="id_password">Password:</label> <input type="password" name="password" required id="id_password" />
+                    <input type="hidden" name="next" value="/" />
+                  </div>
+                  <div class="submit-row">
+                        <label>&nbsp;</label><input type="submit" value="Log in" />
+                  </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

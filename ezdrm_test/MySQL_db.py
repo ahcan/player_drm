@@ -1,0 +1,32 @@
+import MySQLdb as mdb
+import json
+from django.conf import settings
+
+class Database:
+    def connect(self):
+        db = settings.DATABASES['default']['NAME']
+        user = settings.DATABASES['default']['USER']
+        password = settings.DATABASES['default']['PASSWORD']
+        host = settings.DATABASES['default']['HOST']
+        port = settings.DATABASES['default']['PORT']
+        return mdb.connect(host=host, port=port, user=user, passwd=password, db=db, charset='utf8')
+
+    def close_connect(self, session):
+        return session.close()
+
+    '''SELECT'''
+    def execute_query(self, query):
+        if not query:
+            print 'No query!'
+            return 0
+        try:
+            session = self.connect()
+            cur=session.cursor()
+            cur.execute(query)
+            rows = cur.fetchall()
+            self.close_connect(session)
+            return rows
+        except Exception as e:
+            print e
+            self.close_connect(session)
+            return 0

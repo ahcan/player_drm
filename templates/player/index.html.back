@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+{% csrf_token %}
+  <head>
+    <meta charset="utf-8">
+    <!-- Shaka Player compiled library: -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/2.4.5/shaka-player.compiled.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/2.4.5/shaka-player.compiled.debug.js"></script>
+    <!-- Your application source: -->
+    <script src="/static/shakalib/myapp.js"></script>
+    <title>Shaka Player</title>
+  </head>
+  <body>
+    <a href="accounts/logout">Logout</a>
+    <div>
+    <input type="hidden" id='username' value={{username}}>
+    <video id="video"
+           width="640"
+           poster="/static/shakalib/poster.jpg"
+           controls autoplay></video>
+    </div>
+    <div>
+      <input type="text" id="strUrl">
+      <input type="button" onClick = "play_new()" value = "get Link">
+    </div>
+  </body>
+</html>

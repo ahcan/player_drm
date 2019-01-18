@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bitmovin Player full customized example</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+  <!-- Bitmovin Player -->
+  <script type="text/javascript" src="https://cdn.bitmovin.com/player/web/8/bitmovinplayer.js"></script>
+  <style>
+    /*start HideBitmovinLogo*/
+    .bmpui-ui-watermark {
+      display: none;
+    }
+    /*end HideBitmovinLogo*/
+    /*start AlwaysShowUI*/
+    .bmpui-ui-skin-modern .bmpui-ui-controlbar.bmpui-hidden {
+        opacity: 1;
+        visibility: visible;
+    }
+    /*end AlwaysShowUI*/
+    /*start AlwaysShowUI*/
+    .bmpui-ui-skin-modern .bmpui-ui-controlbar.bmpui-hidden {
+        opacity: 1;
+        visibility: visible;
+    }
+    /*end AlwaysShowUI*/
+    /*start PumpkinUI*/
+    .bmpui-ui-watermark {
+      filter: brightness(1) sepia(1) saturate(1000%);
+    }
+    .bmpui-ui-titlebar {
+      filter: brightness(1) sepia(1) saturate(0%);
+    }
+    .bmpui-ui-hugeplaybacktogglebutton {
+      filter: brightness(0.5) sepia(1) saturate(1000%);
+      opacity: 0.3;
+      transition: .3s ease-in-out;
+    }
+    .bmpui-ui-hugeplaybacktogglebutton:hover {
+      filter: brightness(0.5) sepia(1) saturate(1000%);
+      opacity: 0.9;
+      transition: .3s ease-in-out;
+    }
+    .bmpui-ui-playbacktimelabel {
+      filter: brightness(0.5) sepia(1) saturate(1000%);
+    }
+    .bmpui-seekbar-playbackposition-marker {
+      filter: brightness(0.7) sepia(1) saturate(1000%);
+    }
+    .bmpui-seekbar-playbackposition-marker:hover {
+      filter: brightness(2) sepia(0) saturate(0%);
+      transition: 0.2s;
+    }
+    .bmpui-seekbar-playbackposition {
+      filter: brightness(1) sepia(1) saturate(1000%);
+    }
+    .bmpui-seekbar-bufferlevel {
+      filter: brightness(1) saturate(1000%);
+    }
+    .bmpui-seekbar-backdrop {
+      filter: brightness(0) sepia(1) saturate(0%);
+    }
+    .bmpui-seekbar-label {
+      filter: brightness(1) sepia(1) saturate(1000%);
+    }
+    .bmpui-ui-playbacktogglebutton {
+      filter: brightness(0.4) sepia(1) saturate(1000%);
+    }
+    .bmpui-ui-volumetogglebutton {
+      filter: brightness(0.4) sepia(1) saturate(1000%);
+    }
+    .bmpui-ui-volumeslider {
+      filter: brightness(1) sepia(1) saturate(0%);
+    }
+    .bmpui-ui-casttogglebutton {
+      filter: brightness(0.4) sepia(1) saturate(1000%);
+    }
+    .bmpui-ui-settingstogglebutton {
+      filter: brightness(0.4) sepia(1) saturate(1000%);
+    }
+    .bmpui-ui-fullscreentogglebutton {
+      filter: brightness(0.4) sepia(1) saturate(1000%);
+    }
+    .bmpui-ui-settings-panel {
+      filter: brightness(0.4) sepia(1) saturate(1000%);
+    }
+    /*end PumpkinUI*/
+    /*start HideBitmovinLogo*/
+    .bmpui-ui-watermark {
+      display: none;
+    }
+    /*end HideBitmovinLogo*/
+  </style>
+</head>
+<body>
+<div id="my-player"></div>
+
+<script type="text/javascript">
+  var config =   {
+    "key": "93d2ad32-7253-4f5c-8a60-83f33ffd5dda",
+    "cast": {
+      "enable": true
+    },
+    "drm": {
+      "widevine": {
+        "LA_URL": "https://mywidevine.licenseserver.com/"
+      },
+      "playready": {
+        "LA_URL": "https://myplayready.licenseserver.com/"
+      },
+      "access": {
+        "LA_URL": "https://myaccess.licenseserver.com/",
+        "authToken": "INSERT-YOUR-BASE64-ENCODED-AUTH-TOKEN"
+      },
+      "primetime": {
+        "LA_URL": "https://myprimetime.licenseserver.com/"
+      },
+      "fairplay": {
+        "LA_URL": "https://fairplay.licenseserver.com/",
+        "certificateURL": "https://fairplay.licenseserver.com/certificate-url"
+      }
+    }
+  };
+  var configWithAnalytics = Object.assign({}, config, {
+    analytics: {
+      key: '6df8be00-06a6-4ea9-924c-f24689683549',
+      videoId: 'VIDEO_ID'
+    }
+  });
+  var source = {
+    title: 'Art of Motion',
+    description: 'What is this event... Parcour?',
+    hls: '//bitmovin-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8',
+    progressive: '//bitmovin-a.akamaihd.net/content/MI201109210084_1/MI201109210084_mpeg-4_hd_high_1080p25_10mbits.mp4'
+  };
+  var container = document.getElementById('my-player');
+  var player = new bitmovin.player.Player(container, configWithAnalytics);
+
+  player.load(source).then(
+  function(player) {
+      //Success
+      console.log('Successfully created Bitmovin Player instance');
+    },
+  function(reason) {
+      //Error
+      console.log('Error while creating Bitmovin Player instance');
+    }
+  );
+
+</script>
+</body>
+</html>
+
