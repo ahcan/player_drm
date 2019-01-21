@@ -54,10 +54,10 @@ function shakaUncompiledModeSupported() {
     link.type = 'text/css';
     if (buildType == 'uncompiled') {
       link.rel = 'stylesheet/less';
-      link.href = baseUrl + '../ui/controls.less';
+      link.href = baseUrl + '/static/shakalib/ui/controls.less';
     } else {
       link.rel = 'stylesheet';
-      link.href = baseUrl + '../dist/controls.css';
+      link.href = baseUrl + '/static/shakalib/dist/controls.css';
     }
 
     document.head.appendChild(link);
@@ -83,7 +83,7 @@ function shakaUncompiledModeSupported() {
   var combined = fields.concat(fragments);
 
   var scripts = window['UNCOMPILED_JS'];
-  var buildType = 'compiled';
+  var buildType = 'debug_compiled';
   var buildSpecified = false;
 
   if (!shakaUncompiledModeSupported()) {
